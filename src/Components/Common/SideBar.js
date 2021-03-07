@@ -10,11 +10,11 @@ const styles = () => ({
       backgroundColor: '#FFFFFF'
     },
     drawer: {
-        width: '50px',
+        width: '150px',
         flexShrink: 0,
       },
       drawerPaper: {
-        width: '50px',
+        width: '110px',
       },
   })
 

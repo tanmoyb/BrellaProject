@@ -10,7 +10,7 @@ const styles = () => ({
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
-    height: '900px',
+    height: '100%',
     backgroundColor: '#eeeaf1;'
   }
 })

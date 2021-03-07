@@ -16,11 +16,11 @@ const styles = () => ({
   root: {
     padding: '24px',
     backgroundColor: '#FFFFFF',
-    minWidth: 275
+    width: '800px',
+    marginLeft: '20px'
   },
   table: {
-    width:'100px',
-
+    width:'100%',
   },
 })
 
