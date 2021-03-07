@@ -1,18 +1,17 @@
 
 import * as React from 'react'
-import Axios from 'axios'
 import { withStyles } from '@material-ui/core/styles'
 import AgendaView from '../Common/AgendaView'
-import normalize from 'json-api-normalizer';
+import normalize from 'json-api-normalizer'
+import SideBar from  '../Common/SideBar'
 
 const styles = () => ({
   root: {
     display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'column',
+    flexDirection: 'row',
     width: '100%',
     height: '900px',
-    backgroundColor: '#D2C5DD'
+    backgroundColor: '#eeeaf1;'
   }
 })
 
@@ -47,9 +46,14 @@ export class LandingPage extends React.Component{
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
-          Landing Page
+      <div className = {classes.root}>
+        <div>
+         <SideBar></SideBar>
+        </div>
+      <div className={classes.contentWrapper}>
+        
           <AgendaView agendaTimeSlots = {this.state.agendaTimeSlots}></AgendaView>
+      </div>
       </div>
     )
   }

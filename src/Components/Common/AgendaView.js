@@ -9,18 +9,18 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import moment from 'moment'
+import Card from '@material-ui/core/Card';
 
 const styles = () => ({
   root: {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'column',
-    width: '100%',
-    height: '900px',
-    backgroundColor: '#D2C5DD'
+    padding: '24px',
+    backgroundColor: '#FFFFFF',
+    minWidth: 275
   },
   table: {
-    minWidth: 650,
+    width:'100px',
+
   },
 })
 
@@ -32,8 +32,8 @@ export class AgendaView extends React.Component{
         
       }
 
-      createData(name, calories, fat, carbs, protein) {
-        return { name, calories, fat, carbs, protein };
+      createData(name,date, duration) {
+        return { name, date, duration };
       }
 
       
@@ -42,24 +42,22 @@ export class AgendaView extends React.Component{
 
         let rows = []
         for (const [key, value] of Object.entries(agendaTimeSlots)) {
-          console.log(`${key}: ${value.attributes.title}`);
-          rows.push(this.createData(value.attributes.title,159, 6.0, 24, 4.0))
-        }
-        console.log("agendaTimes",agendaTimeSlots)
-        
-  
+          let agendaName = value.attributes.title
+          let agendaDate = moment(value.attributes.startTime).format('MMMM Do YYYY, h:mm:ss a')
+          let agendaDuration = value.attributes.duration
 
+          rows.push(this.createData(agendaName,agendaDate,agendaDuration, 6.0, 24, 4.0))
+        }
+        
         return (
+          <div className = {classes.tableWrapper}>
           <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
+            <Table className={classes.table} aria-label="agenda table">
               <TableHead>
                 <TableRow>
                   <TableCell>Name</TableCell>
                   <TableCell align="right">Date</TableCell>
                   <TableCell align="right">Duration</TableCell>
-                  <TableCell align="right">Country</TableCell>
-                  <TableCell align="right">Region</TableCell>
-                  <TableCell align="right">Industry</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -68,15 +66,14 @@ export class AgendaView extends React.Component{
                     <TableCell component="th" scope="row">
                       {row.name}
                     </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
+                    <TableCell align="right">{row.date}</TableCell>
+                    <TableCell align="right">{row.duration}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </TableContainer>
+          </div>
         );
       }
   
@@ -84,10 +81,9 @@ export class AgendaView extends React.Component{
 
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
-          Agenda View
+      <Card className={classes.root}>
           {this.getAgendaTable()}
-      </div>
+      </Card>
     )
   }
 }
