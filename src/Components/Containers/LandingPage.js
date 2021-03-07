@@ -2,6 +2,7 @@
 import * as React from 'react'
 import Axios from 'axios'
 import { withStyles } from '@material-ui/core/styles'
+import AgendaView from '../Common/AgendaView'
 
 
 const styles = () => ({
@@ -10,7 +11,7 @@ const styles = () => ({
     alignItems: 'center',
     flexDirection: 'column',
     width: '100%',
-    height: '100%',
+    height: '900px',
     backgroundColor: '#D2C5DD'
   }
 })
@@ -42,6 +43,7 @@ export class LandingPage extends React.Component{
     return (
       <div className={classes.root}>
           Landing Page
+          <AgendaView></AgendaView>
       </div>
     )
   }
