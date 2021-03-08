@@ -10,16 +10,30 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import moment from "moment";
 import Card from "@material-ui/core/Card";
+import Button from "@material-ui/core/Button";
 
 const styles = () => ({
   root: {
     padding: "24px",
     backgroundColor: "#FFFFFF",
-    width: "800px",
+    width: "100%",
     marginLeft: "20px",
+    marginTop: "20px",
   },
   table: {
     width: "100%",
+  },
+  eventWrapper: {
+    paddingBottom: "40px",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  buttonWrapper: {
+    marginRight: "150px",
+  },
+  searchBar: {
+    height: "50px",
   },
 });
 
@@ -57,6 +71,9 @@ export class AgendaView extends React.Component {
                 <TableCell>Name</TableCell>
                 <TableCell align="right">Date</TableCell>
                 <TableCell align="right">Duration</TableCell>
+                <TableCell align="right">Country</TableCell>
+                <TableCell align="right">Region</TableCell>
+                <TableCell align="right">Industy</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -67,6 +84,9 @@ export class AgendaView extends React.Component {
                   </TableCell>
                   <TableCell align="right">{row.date}</TableCell>
                   <TableCell align="right">{row.duration}</TableCell>
+                  <TableCell align="right">PlaceHolder Country</TableCell>
+                  <TableCell align="right">PlaceHolder Region</TableCell>
+                  <TableCell align="right">PlaceHolder Industry</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -75,10 +95,24 @@ export class AgendaView extends React.Component {
       </div>
     );
   }
+  getEvents() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.buttonWrapper}>
+        <Button variant="outlined">MyEvents</Button>
+        <Button variant="outlined">AllEvents</Button>
+      </div>
+    );
+  }
 
   render() {
     const { classes } = this.props;
-    return <Card className={classes.root}>{this.getAgendaTable()}</Card>;
+    return (
+      <Card className={classes.root}>
+        <div className={classes.eventWrapper}>{this.getEvents()}</div>
+        {this.getAgendaTable()}
+      </Card>
+    );
   }
 }
 
